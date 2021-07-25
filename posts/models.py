@@ -17,3 +17,17 @@ class Comment(models.Model):
 
     class Meta:
         db_table  = 'comments'
+
+class Like(models.Model):
+    user          = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='likes')
+    post          = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='likes')
+
+    class Meta:
+        db_table  = 'likes'
+
+class Follow(models.Model):
+    follow        = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='follow')
+    followed      = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='followed')
+
+    class Meta:
+        db_table  = 'follows'
